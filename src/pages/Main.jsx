@@ -4,7 +4,7 @@ import SerchBar from '../components/SerchBar'
 const Main = () => {
   return (
     <div>
-        <Navbar/>
+        
         <SerchBar/>
     </div>
   )
