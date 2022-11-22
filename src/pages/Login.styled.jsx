@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 export const LoginStyledDıvImg = styled.div`
   width: 50%;
-  height: 93vh;
+  height: 94vh;
   background-image: url("https://picsum.photos/1600/900");
   background-repeat: no-repeat;
   background-position: center;
