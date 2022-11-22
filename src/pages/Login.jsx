@@ -1,5 +1,4 @@
-import { LoginStyledDıvImg } from "./Login.styled";
-import { LoginStyledForm } from "./Login.styled";
+import { LoginStyledDıvImg, LoginStyledForm } from "./Login.styled";
 import Box from "@mui/material/Box";
 import TextField from "@mui/material/TextField";
 import Button from '@mui/material/Button';
@@ -35,9 +34,9 @@ const Login = () => {
   };
 
   return (
-    <div className="d-flex" >
+    <div className="d-flex">
       <LoginStyledDıvImg></LoginStyledDıvImg>
-      <div className="d-flex flex-column justify-content-center ">
+      <LoginStyledForm className="d-flex flex-column justify-content-center">
         <h2 className="text-center">LOGIN</h2>
         <Box
           component="form"
@@ -47,9 +46,9 @@ const Login = () => {
           noValidate
           autoComplete="off"
         >
-          <div className="d-flex flex-column">
-            <TextField id="outlined-required" label="Required" type="email" />
-            <FormControl sx={{ m: 1, width: '25ch' }} variant="outlined">
+          <div className="d-flex flex-column align-items-center">
+            <TextField id="outlined-required" label="Email" type="email" sx={{ m : 1, width:"80% !important"}}/>
+            <FormControl sx={{ m: 1, width: '80%' }} variant="outlined">
               <InputLabel htmlFor="outlined-adornment-password">Password</InputLabel>
               <OutlinedInput
                 id="outlined-adornment-password"
@@ -70,11 +69,13 @@ const Login = () => {
                 }
                 label="Password"
               />
+              <Button sx={{ marginTop:"1rem", width:"100%"}} type="submit" variant="contained">Login</Button>
+              <Button sx={{ marginTop:"1rem", width:"100%", textTransform:"initial"}} variant="contained">Continue with Google</Button>
             </FormControl>
-            <Button type="submit" variant="contained">Contained</Button>
+            
           </div>
         </Box>
-      </div>
+      </LoginStyledForm>
     </div>
   );
 };
