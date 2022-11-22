@@ -19,6 +19,8 @@ import { auth } from "../auth/firebase";
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
 import { REGISTER } from "../redux/types/reduxTypes";
+import falseicon from "../assets/incorrect-icon.png"
+
 
 const Register = () => {
   const dispatch = useDispatch();
@@ -33,7 +35,9 @@ const Register = () => {
   });
 
   const [emailError, setEmailError] = useState(false);
+  const [passwordError , setPasswordError] = useState(false);
   const [registerSuccess, setRegisterSuccess] = useState(false);
+  const [registerUnsuccess, setRegisterUnsuccess] = useState(false);
 
   const handleChange = (prop) => (event) => {
     setValues({ ...values, [prop]: event.target.value });
@@ -65,8 +69,16 @@ const Register = () => {
     const reg = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (email.match(reg)) {
       setEmailError(false);
+      setRegisterUnsuccess(false)
     } else {
       setEmailError(true);
+    }
+
+    if(String(password).length<6){
+      setPasswordError(true)
+      setRegisterUnsuccess(true)
+    }else{
+      setPasswordError(true)
     }
 
     if (!emailError) {
@@ -144,6 +156,8 @@ const Register = () => {
                   }
                   label="Password"
                   required
+                  fullWidth
+                  error={passwordError && "Min 6 ch"}
                   onChangeCapture={(e) =>
                     dispatch({
                       type: REGISTER,
@@ -172,6 +186,9 @@ const Register = () => {
                 alt="successfully-registered"
               />
             )}
+            {registerUnsuccess && <img  style={{ width: "3rem" }}
+                src={falseicon}
+                alt="successfully-registered"  /> }
           </div>
         </RegisterStyledForm>
       </div>
