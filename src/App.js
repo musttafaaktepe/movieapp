@@ -4,10 +4,13 @@ import { Route, Router, Routes } from "react-router-dom";
 import Login from "./pages/Login";
 import Navbar from "./components/Navbar";
 import Register from "./pages/Register";
+import { Provider } from "react-redux";
+import  { store } from "./redux"
 
 function App() {
   return (
-    <>
+    <div>
+      <Provider store={store}>
     <Navbar/>
     {/* <Main/> */}
     <Routes>
@@ -16,8 +19,8 @@ function App() {
       <Route path="/register" element={<Register/>} />
 
     </Routes>
-    
-    </>
+    </Provider>
+    </div>
   );
 }
 
