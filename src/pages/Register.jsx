@@ -25,16 +25,12 @@ const Register = () => {
 
   const email = useSelector((state) => state.email);
   const password = useSelector((state) => state.password);
-  const user = useSelector ((state)=>state.user)
+  const user = useSelector((state) => state.user);
 
   const [values, setValues] = useState({
     password: "",
     showPassword: false,
   });
-
-  // const [email, setEmail] = useState("");
-  // const [registerEmail, setRegisterEmail] = useState("")
-  // const [password, setPassword] = useState("");
 
   const [emailError, setEmailError] = useState(false);
   const [registerSuccess, setRegisterSuccess] = useState(false);
@@ -55,7 +51,12 @@ const Register = () => {
   };
 
   const handleRegisterEmail = (e) => {
-    dispatch({ type: REGISTER, email: e.target.value });
+    dispatch({
+      type: REGISTER,
+      email: e.target.value,
+      password: password,
+      payload: user,
+    });
     console.log(email);
   };
 
@@ -75,14 +76,20 @@ const Register = () => {
           email,
           password
         );
-        dispatch({type:REGISTER, payload:user})
+        dispatch({
+          type: REGISTER,
+          payload: user,
+          email: email,
+          password: password,
+        });
         setRegisterSuccess(true);
         console.log(user);
-      } catch (error) {
-        console.log(error.message);
-      }
+      } catch (error) {}
     }
   };
+
+  console.log(`${email}  ${password}`);
+  // console.log(user)
 
   return (
     <RegisterBody>
@@ -108,7 +115,6 @@ const Register = () => {
                 fullWidth
                 error={emailError}
                 helperText={emailError && "Invalid Email"}
-                // onChange={(e) => {setEmail(e.target.value)setRegisterSuccess(false)}
                 onChange={handleRegisterEmail}
               />
               <FormControl sx={{ m: 1, width: "80%" }} variant="outlined">
@@ -138,8 +144,14 @@ const Register = () => {
                   }
                   label="Password"
                   required
-                  // onChangeCapture={(e)=>setPassword(e.target.value)}
-                  onChangeCapture = {(e)=>dispatch({type:REGISTER, password : e.target.value })}
+                  onChangeCapture={(e) =>
+                    dispatch({
+                      type: REGISTER,
+                      password: e.target.value,
+                      email: email,
+                      payload: user,
+                    })
+                  }
                 />
                 <Button
                   sx={{ marginTop: "1rem", width: "100%" }}
