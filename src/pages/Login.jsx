@@ -15,9 +15,11 @@ import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
 import { LOGIN } from "../redux/types/reduxTypes";
 import { signInWithEmailAndPassword } from "firebase/auth";
+import { useNavigate } from "react-router-dom";
 
 
 const Login = () => {
+  const navigate = useNavigate();
   const dispatch = useDispatch();
 
   const email = useSelector((state) => state.email);
@@ -70,6 +72,9 @@ const Login = () => {
       try {
         const user = await signInWithEmailAndPassword(auth, email, password)
         dispatch({type:LOGIN, payload:user, email:email, password:password, login:true})
+        navigate("/")
+        
+
       } catch (error) {
         console.log(error.message)
       }

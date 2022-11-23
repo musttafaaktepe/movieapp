@@ -5,9 +5,31 @@ import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
 import { useNavigate } from "react-router-dom";
+import { auth } from "../auth/firebase";
+import { useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
+import { LOGOUT } from "../redux/types/reduxTypes";
+import { StarRate } from "@mui/icons-material";
+import { signOut } from "firebase/auth";
 
 const Navbar = () => {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const loginInformation = useSelector((state) => state.loginInformation);
+  const user = useSelector((state)=>state.user)
+  // console.log(loginInformation);
+
+  const handleLogout = async () => {
+    try { await signOut(auth) ;
+    dispatch ({type:LOGOUT})
+
+    } catch(error){
+      console.log(error.message);
+    }
+  }
+
+  console.log(loginInformation)
+
   return (
     <div>
       <Box sx={{ flexGrow: 1 }}>
@@ -23,19 +45,15 @@ const Navbar = () => {
                 
                 Movie App{" "}
               </Typography>
-            </div>
-            <div>
-              <Button
-                onClick={() => navigate("/login")}
-                sx={{ fontSize: "large" }}
-                color="inherit"
-              >
-                Login
-              </Button>
-              <Button sx={{ fontSize: "large" }} color="inherit" onClick={() => navigate("/register")}>
-                Register
-              </Button>
-            </div>
+              </div>
+          { loginInformation || (<div>
+          <Button sx={{fontSize:"medium"}} color="inherit" onClick={() => navigate("/login")}>Login</Button>
+          <Button sx={{fontSize:"medium"}} color="inherit" onClick={() => navigate("/register")}>Register</Button>
+          </div>) }
+          { loginInformation && (<div>
+          <h5 style={{display:"inline"}}>{user?.user?.email}</h5>
+          <Button sx={{fontSize:"medium"}} color="inherit" onClick={() => navigate("/register")} onClick={handleLogout}  >Logout</Button>
+          </div>) }
           </Toolbar>
         </AppBar>
       </Box>
