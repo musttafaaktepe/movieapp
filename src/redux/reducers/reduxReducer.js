@@ -1,4 +1,4 @@
-import { LOGIN, REGISTER, LOGOUT } from "../types/reduxTypes"
+import { LOGIN, REGISTER, LOGOUT} from "../types/reduxTypes"
 const initialState = {
     email:"",
     password:"",
