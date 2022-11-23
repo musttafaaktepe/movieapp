@@ -1,9 +1,12 @@
 import Card from "react-bootstrap/Card";
 import { MovieCardOverview } from "./MovieCard.styled";
 import "./moviecard.css";
+import { useNavigate } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 const MovieCard = ({ dataMovies: { data } }) => {
-  console.log(data);
+  const navigate = useNavigate();
+  const loginInformation = useSelector((state) => state.loginInformation);
   return (
     <div
       className=" text-center d-flex flex-row justify-content-center flex-wrap"
@@ -11,6 +14,13 @@ const MovieCard = ({ dataMovies: { data } }) => {
     >
       {data?.results.map((result) => {
         const { backdrop_path, original_title, overview } = result;
+        const handleMovieDetails = () => {
+          if (loginInformation) {
+            navigate("/details")
+          } else {
+            alert("Please log in to see details..");
+          }
+        };
         return (
           <>
             <Card
@@ -21,6 +31,7 @@ const MovieCard = ({ dataMovies: { data } }) => {
                 overflow: "hidden",
                 cursor: "pointer",
               }}
+              onClick={handleMovieDetails}
             >
               <Card.Img
                 className="movie-img"

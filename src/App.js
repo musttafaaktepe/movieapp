@@ -6,6 +6,8 @@ import Navbar from "./components/Navbar";
 import Register from "./pages/Register";
 import { Provider } from "react-redux";
 import  { store } from "./redux"
+import PrivateRouter from "./router/PrivateRouter";
+import MovieDetails from "./pages/MovieDetails";
 
 function App() {
   return (
@@ -17,6 +19,9 @@ function App() {
       <Route path='/' element={<Main/>} />
       <Route path="/login" element={<Login/>}/>
       <Route path="/register" element={<Register/>} />
+      <Route path="/details" element={<PrivateRouter/>}  >
+        <Route path="" element={<MovieDetails/>}/>
+      </Route>
 
     </Routes>
     </Provider>
