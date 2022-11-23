@@ -13,7 +13,7 @@ import { useState } from "react";
 import { auth } from "../auth/firebase";
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
-import { LOGIN, LOGOUT } from "../redux/types/reduxTypes";
+import { LOGIN } from "../redux/types/reduxTypes";
 import { signInWithEmailAndPassword } from "firebase/auth";
 
 
@@ -32,7 +32,7 @@ const Login = () => {
   });
 
   const [emailError, setEmailError] = useState(false)
-  const[passwordError, setPasswordError]=useState(false)
+  const [passwordError, setPasswordError] = useState(false)
 
   const handleChange = (prop) => (event) => {
     setValues({ ...values, [prop]: event.target.value });

@@ -1,13 +1,16 @@
-import React from 'react'
-import Navbar from '../components/Navbar'
-import SerchBar from '../components/SerchBar'
+import React from "react";
+import SerchBar from "../components/SerchBar";
 const Main = () => {
   return (
     <div>
+      <div>
+        <SerchBar />
+      </div>
+      <div>
         
-        <SerchBar/>
+      </div>
     </div>
-  )
-}
+  );
+};
 
-export default Main
+export default Main;

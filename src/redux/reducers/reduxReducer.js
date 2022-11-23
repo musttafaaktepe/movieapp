@@ -9,7 +9,7 @@ const initialState = {
 const reduxReducer  = (state=initialState, action ) => {
     switch (action.type){
         case LOGIN:
-            return {...state, email:action.email, password:action.password, user:action.payload, loginInformation:true }
+            return {...state, email:action.email, password:action.password, user:action.payload, loginInformation:action.login }
         case REGISTER:
             return {...state, email:action.email, password:action.password, user:action.payload, loginInformation:action.login}
         case LOGOUT:
