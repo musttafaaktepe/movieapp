@@ -9,26 +9,27 @@ import { auth } from "../auth/firebase";
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
 import { LOGOUT } from "../redux/types/reduxTypes";
-import { StarRate } from "@mui/icons-material";
 import { signOut } from "firebase/auth";
 
 const Navbar = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const loginInformation = useSelector((state) => state.loginInformation);
-  const user = useSelector((state)=>state.user)
+  const user = useSelector((state) => state.user);
   // console.log(loginInformation);
 
+  const API_KEY = process.env.REACT_APP_API_KEY;
+  console.log(API_KEY);
   const handleLogout = async () => {
-    try { await signOut(auth) ;
-    dispatch ({type:LOGOUT})
-
-    } catch(error){
+    try {
+      await signOut(auth);
+      dispatch({ type: LOGOUT });
+    } catch (error) {
       console.log(error.message);
     }
-  }
+  };
 
-  console.log(loginInformation)
+  console.log(loginInformation);
 
   return (
     <div>
@@ -40,20 +41,41 @@ const Navbar = () => {
                 variant="h6"
                 component="div"
                 sx={{ flexGrow: 1, cursor: "pointer" }}
-                onClick={()=>navigate("/")}
+                onClick={() => navigate("/")}
               >
-                
                 Movie App{" "}
               </Typography>
+            </div>
+            {loginInformation || (
+              <div>
+                <Button
+                  sx={{ fontSize: "medium" }}
+                  color="inherit"
+                  onClick={() => navigate("/login")}
+                >
+                  Login
+                </Button>
+                <Button
+                  sx={{ fontSize: "medium" }}
+                  color="inherit"
+                  onClick={() => navigate("/register")}
+                >
+                  Register
+                </Button>
               </div>
-          { loginInformation || (<div>
-          <Button sx={{fontSize:"medium"}} color="inherit" onClick={() => navigate("/login")}>Login</Button>
-          <Button sx={{fontSize:"medium"}} color="inherit" onClick={() => navigate("/register")}>Register</Button>
-          </div>) }
-          { loginInformation && (<div>
-          <h5 style={{display:"inline"}}>{user?.user?.email}</h5>
-          <Button sx={{fontSize:"medium"}} color="inherit" onClick={() => navigate("/register")} onClick={handleLogout}  >Logout</Button>
-          </div>) }
+            )}
+            {loginInformation && (
+              <div>
+                <h5 style={{ display: "inline" }}>{user?.user?.email}</h5>
+                <Button
+                  sx={{ fontSize: "medium" }}
+                  color="inherit"
+                  onClick={handleLogout}
+                >
+                  Logout
+                </Button>
+              </div>
+            )}
           </Toolbar>
         </AppBar>
       </Box>
