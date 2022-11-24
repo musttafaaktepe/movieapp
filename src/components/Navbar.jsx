@@ -10,6 +10,7 @@ import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
 import { LOGOUT } from "../redux/types/reduxTypes";
 import { signOut } from "firebase/auth";
+import { rgbToHex } from "@mui/material";
 
 const Navbar = () => {
   const navigate = useNavigate();
@@ -19,7 +20,7 @@ const Navbar = () => {
   // console.log(loginInformation);
 
   const API_KEY = process.env.REACT_APP_API_KEY;
-  console.log(API_KEY);
+  
   const handleLogout = async () => {
     try {
       await signOut(auth);
@@ -29,7 +30,7 @@ const Navbar = () => {
     }
   };
 
-  console.log(loginInformation);
+
 
   return (
     <div>

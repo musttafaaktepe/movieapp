@@ -16,7 +16,7 @@ const MovieCard = ({ dataMovies: { data } }) => {
         const { poster_path, original_title, overview } = result;
         const handleMovieDetails = () => {
           if (loginInformation) {
-            navigate("/details")
+            navigate("/details");
           } else {
             alert("Please log in to see details..");
           }
@@ -26,16 +26,17 @@ const MovieCard = ({ dataMovies: { data } }) => {
             <Card
               className="card"
               style={{
-                width: "27rem",
-                height: "28rem",
+                width: "25rem",
+                height: "30rem",
                 overflow: "hidden",
                 cursor: "pointer",
               }}
               onClick={handleMovieDetails}
             >
               <Card.Img
+                
                 className="movie-img"
-                style={{ height: "65%" }}
+                style={{ height: "85%" }}
                 variant="top"
                 src={`https://image.tmdb.org/t/p/w1280${poster_path}`}
               />

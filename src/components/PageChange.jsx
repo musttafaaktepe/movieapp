@@ -3,7 +3,7 @@ import back from "../assets/back.png";
 import next from "../assets/next.png";
 
 
-const PageChange = ({ pageNumber, setPageNumber }) => {
+const PageChange = ({ pageNumber, setPageNumber, totalpages }) => {
   return (
     <div
       style={{
@@ -17,7 +17,7 @@ const PageChange = ({ pageNumber, setPageNumber }) => {
       <img
         src={next}
         alt=""
-        onClick={() => pageNumber > 0 && pageNumber<500 ? setPageNumber(pageNumber + 1) : setPageNumber(1)}
+        onClick={() => pageNumber > 0 && pageNumber<totalpages ? setPageNumber(pageNumber + 1) : setPageNumber(1)}
       />
     </div>
   );

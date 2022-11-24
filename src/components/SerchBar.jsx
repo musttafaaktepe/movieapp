@@ -4,6 +4,17 @@ import Button from "@mui/material/Button";
 // import { Button } from "bootstrap";
 
 const SerchBar = ({ searchMovie, setSearchMovie, searchMovies }) => {
+  const handleSearch =(e)=>{
+    if (searchMovie){
+      searchMovies();
+    } 
+  }
+  const handleKeyPress =(e)=>{
+    if(e.keyCode === 13){
+      e.preventDefault();
+      handleSearch();
+    }
+  }
   return (
     <div>
       <Box
@@ -18,6 +29,7 @@ const SerchBar = ({ searchMovie, setSearchMovie, searchMovies }) => {
           label="Search Movie..."
           variant="outlined"
           onChange={(e) => setSearchMovie(e.target.value)}
+          onKeyDown={handleKeyPress}
         />
         <Button
           sx={{
@@ -26,7 +38,7 @@ const SerchBar = ({ searchMovie, setSearchMovie, searchMovies }) => {
             width: "5.5rem !important",
           }}
           variant="contained"
-          onClick={() => searchMovie && searchMovies()}
+          onClick={handleSearch}
         >
           Search
         </Button>
