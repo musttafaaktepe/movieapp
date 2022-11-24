@@ -3,7 +3,7 @@ import { TextField, Box } from "@mui/material";
 import Button from "@mui/material/Button";
 // import { Button } from "bootstrap";
 
-const SerchBar = () => {
+const SerchBar = ({ searchMovie, setSearchMovie, searchMovies }) => {
   return (
     <div>
       <Box
@@ -17,8 +17,17 @@ const SerchBar = () => {
           id="outlined-basic"
           label="Search Movie..."
           variant="outlined"
+          onChange={(e) => setSearchMovie(e.target.value)}
         />
-        <Button sx={{ height: "2.5rem", margin:"0.8rem !important", width:"5.5rem !important"}}  variant="contained">
+        <Button
+          sx={{
+            height: "2.5rem",
+            margin: "0.8rem !important",
+            width: "5.5rem !important",
+          }}
+          variant="contained"
+          onClick={() => searchMovie && searchMovies()}
+        >
           Search
         </Button>
       </Box>

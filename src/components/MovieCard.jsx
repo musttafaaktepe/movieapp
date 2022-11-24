@@ -13,7 +13,7 @@ const MovieCard = ({ dataMovies: { data } }) => {
       style={{ gap: "1rem" }}
     >
       {data?.results.map((result) => {
-        const { backdrop_path, original_title, overview } = result;
+        const { poster_path, original_title, overview } = result;
         const handleMovieDetails = () => {
           if (loginInformation) {
             navigate("/details")
@@ -37,7 +37,7 @@ const MovieCard = ({ dataMovies: { data } }) => {
                 className="movie-img"
                 style={{ height: "65%" }}
                 variant="top"
-                src={`https://image.tmdb.org/t/p/w1280${backdrop_path}`}
+                src={`https://image.tmdb.org/t/p/w1280${poster_path}`}
               />
               <Card.Body>
                 <Card.Text>{original_title}</Card.Text>
