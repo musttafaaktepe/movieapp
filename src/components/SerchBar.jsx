@@ -3,12 +3,13 @@ import { TextField, Box } from "@mui/material";
 import Button from "@mui/material/Button";
 // import { Button } from "bootstrap";
 
-const SerchBar = ({ searchMovie, setSearchMovie, searchMovies }) => {
+const SerchBar = ({ searchMovie, setSearchMovie, setPageNumber, pageNumber, searchMovies}) => {
   const handleSearch =(e)=>{
     if (searchMovie){
-      searchMovies();
+      pageNumber === 1 ? searchMovies() : setPageNumber(1)      
     } 
   }
+
   const handleKeyPress =(e)=>{
     if(e.keyCode === 13){
       e.preventDefault();

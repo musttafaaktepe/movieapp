@@ -36,9 +36,11 @@ const Main = () => {
         searchMovie={searchMovie}
         setSearchMovie={setSearchMovie}
         searchMovies={searchMovies}
+        setPageNumber={setPageNumber}
+        pageNumber={pageNumber}
       />
       <MovieCard dataMovies={dataMovies} />
-      <PageChange pageNumber={pageNumber} setPageNumber={setPageNumber} totalpages={totalpages} />
+      <PageChange pageNumber={pageNumber} setPageNumber={setPageNumber} totalpages={totalpages} searchMovies={searchMovies}/>
     </div>
   );
 };

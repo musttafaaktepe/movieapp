@@ -34,7 +34,8 @@ const MovieCard = ({ dataMovies: { data } }) => {
               onClick={handleMovieDetails}
             >
               <Card.Img
-                
+
+                style={{ height: "90%" }}
                 className="movie-img"
                 style={{ height: "85%" }}
                 variant="top"
