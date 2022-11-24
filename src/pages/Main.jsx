@@ -2,6 +2,7 @@ import MovieCard from "../components/MovieCard";
 import SearchBar from "../components/SerchBar";
 import React, { useEffect, useState } from "react";
 import axios from "axios";
+import PageChange from "../components/PageChange";
 
 const Main = () => {
 
@@ -23,6 +24,7 @@ const Main = () => {
     <div>
      <SearchBar />
       <MovieCard dataMovies={dataMovies}/>
+      <PageChange/>
     </div>
   );
 };
