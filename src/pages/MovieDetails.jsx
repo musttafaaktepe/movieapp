@@ -8,7 +8,15 @@ const MovieDetails = () => {
   const navigate = useNavigate();
   const { state: movieDetails } = useLocation();
   const [videoKey, setVideoKey] = useState("");
-  const { id, title } = movieDetails;
+  const {
+    id,
+    title,
+    poster_path,
+    overview,
+    release_date,
+    vote_average,
+    vote_count,
+  } = movieDetails;
   const API_KEY = process.env.REACT_APP_API_KEY;
   const videoUrl = `https://api.themoviedb.org/3/movie/${id}/videos?api_key=${API_KEY}`;
 
@@ -27,24 +35,36 @@ const MovieDetails = () => {
     getMovieVideos();
   }, []);
 
-  console.log(videoKey);
-
   return (
     <div>
-      <div>
-        <h2>{title}</h2>
-      </div>
+      <h2>{title}</h2>
       <div className="w-10/12 md:w-3/5 mx-auto my-3">
         <div className="ratio ratio-16x9">
           <iframe
-            className="rounded-l"
+            className="rounded-xl"
             src={`https://www.youtube.com/embed/${videoKey}?autoplay=1&mute=1`}
             title="YouTube video"
             allowFullScreen
           ></iframe>
         </div>
-        <button onClick={() => navigate(-1)}>Go Back</button>
       </div>
+      <div className="d-flex">
+        <img
+          style={{ width: "20rem", display: "inline-block" }}
+          src={`https://image.tmdb.org/t/p/w1280${poster_path}`}
+        />
+
+        <div className="d-flex flex-column border border-primary justify-content-between ">
+          <p>overview:{overview}</p>
+          <div>
+            <p>elease_date: {release_date} </p>
+            <p>vote_average : {vote_average} </p>
+            <p>vote_count : {vote_count} vote_count</p>
+          </div>
+        </div>
+      </div>
+
+      <button onClick={() => navigate(-1)}>Go Back</button>
     </div>
   );
 };
