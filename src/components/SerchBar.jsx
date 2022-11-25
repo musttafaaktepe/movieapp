@@ -2,12 +2,19 @@ import React from "react";
 import { TextField, Box } from "@mui/material";
 import Button from "@mui/material/Button";
 // import { Button } from "bootstrap";
+import { useSelector } from "react-redux";
 
 const SerchBar = ({ searchMovie, setSearchMovie, setPageNumber, pageNumber, searchMovies}) => {
+
+  const loginInformation = useSelector((state)=>state.loginInformation)
+
+
   const handleSearch =(e)=>{
-    if (searchMovie){
-      pageNumber === 1 ? searchMovies() : setPageNumber(1)      
-    } 
+    if (loginInformation){
+      searchMovie && ( pageNumber === 1 ? searchMovies() : setPageNumber(1))
+    }else{
+      alert("please login ")
+    }
   }
 
   const handleKeyPress =(e)=>{

@@ -3,6 +3,7 @@ import SearchBar from "../components/SerchBar";
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import PageChange from "../components/PageChange";
+// import { toastWarnNotify } from "../helpers/ToastNotify";
 
 const Main = () => {
   const [dataMovies, setDataMovies] = useState({});
