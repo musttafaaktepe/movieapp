@@ -38,7 +38,6 @@ const MovieCard = ({ dataMovies: { data } }) => {
 
                 style={{ height: "90%" }}
                 className="movie-img"
-                style={{ height: "85%" }}
                 variant="top"
                 src={`https://image.tmdb.org/t/p/w1280${poster_path}`}
               />
