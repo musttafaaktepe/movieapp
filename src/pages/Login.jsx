@@ -18,8 +18,11 @@ import {
   signInWithEmailAndPassword,
   GoogleAuthProvider,
   signInWithPopup,
+  sendPasswordResetEmail,
 } from "firebase/auth";
 import { useNavigate } from "react-router-dom";
+// import { toast } from "react-toastify";
+// import { toastSuccess } from "../helpers/ToastNotify";
 
 const Login = () => {
   const navigate = useNavigate();
@@ -40,16 +43,30 @@ const Login = () => {
 
   const providerGoogle = new GoogleAuthProvider();
 
+  const forgotPassword = (email) => {
+    sendPasswordResetEmail(auth, email)
+      .then(() => {
+        alert("check your mailbox");
+      })
+      .catch((error) => console.log(error.message));
+  };
+
   const signInWithGoogle = () => {
     signInWithPopup(auth, providerGoogle)
       .then((result) => {
         const userName = result.user.displayName;
-        localStorage.setItem ("userName", userName )
-        dispatch ({type:LOGIN, payload:localStorage.getItem("userName"), email:email,password:password, login:true })
+        localStorage.setItem("userName", userName);
+        dispatch({
+          type: LOGIN,
+          payload: localStorage.getItem("userName"),
+          email: email,
+          password: password,
+          login: true,
+        });
       })
       .catch((error) => {
         console.log(error);
-      })
+      });
   };
 
   const handleChange = (prop) => (event) => {
@@ -93,6 +110,7 @@ const Login = () => {
           login: true,
         });
         navigate("/");
+        // toastSuccess()
       } catch (error) {
         console.log(error.message);
       }
@@ -170,6 +188,19 @@ const Login = () => {
                   })
                 }
               />
+              <div>
+                <p
+                  style={{
+                    textDecoration: "underline",
+                    cursor: "pointer",
+                    color: "blue",
+                  }}
+
+                  onClick={()=>forgotPassword(email)}
+                >
+                  Forgot Password?
+                </p>
+              </div>
               <Button
                 sx={{ marginTop: "1rem", width: "100%" }}
                 type="submit"
@@ -178,6 +209,7 @@ const Login = () => {
               >
                 Login
               </Button>
+
               <Button
                 sx={{
                   marginTop: "1rem",

@@ -10,7 +10,7 @@ import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
 import { LOGOUT } from "../redux/types/reduxTypes";
 import { signOut } from "firebase/auth";
-import { rgbToHex } from "@mui/material";
+
 
 const Navbar = () => {
   const navigate = useNavigate();
