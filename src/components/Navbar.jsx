@@ -20,7 +20,7 @@ const Navbar = () => {
   const user = useSelector((state) => state.user);
   // console.log(loginInformation);
 
-  const API_KEY = process.env.REACT_APP_API_KEY;
+  
   
   const handleLogout = async () => {
     try {

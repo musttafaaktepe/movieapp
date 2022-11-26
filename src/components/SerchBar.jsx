@@ -1,7 +1,6 @@
 import React from "react";
 import { TextField, Box } from "@mui/material";
 import Button from "@mui/material/Button";
-// import { Button } from "bootstrap";
 import { useSelector } from "react-redux";
 
 const SerchBar = ({ searchMovie, setSearchMovie, setPageNumber, pageNumber, searchMovies}) => {

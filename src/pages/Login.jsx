@@ -22,6 +22,7 @@ import {
 } from "firebase/auth";
 import { useNavigate } from "react-router-dom";
 import { toastSuccessNotify, toastWarning } from "../helpers/TostyNotify";
+import GoogleIcon from "../assets/GoogleIcon";
 
 const Login = () => {
   const navigate = useNavigate();
@@ -62,6 +63,8 @@ const Login = () => {
           password: password,
           login: true,
         });
+        navigate("/");
+        toastSuccessNotify("login with google");
       })
       .catch((error) => {
         console.log(error);
@@ -88,14 +91,14 @@ const Login = () => {
     const reg = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (email.match(reg)) {
       setEmailError(false);
-      toastWarning("please check your email")
+      toastWarning("please check your email");
     } else {
       setEmailError(true);
     }
 
     if (String(password).length < 6) {
       setPasswordError(true);
-      toastWarning("please check your password")
+      toastWarning("please check your password");
     } else {
       setPasswordError(false);
     }
@@ -111,7 +114,7 @@ const Login = () => {
           login: true,
         });
         navigate("/");
-        toastSuccessNotify("login")
+        toastSuccessNotify("login");
       } catch (error) {
         console.log(error.message);
       }
@@ -219,7 +222,11 @@ const Login = () => {
                 onClick={signInWithGoogle}
                 variant="contained"
               >
+                 <GoogleIcon color="currentColor" />
+
+                 
                 Continue with Google
+               
               </Button>
             </FormControl>
           </div>
