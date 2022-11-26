@@ -18,8 +18,8 @@ function App() {
         <Navbar />
         {/* <Main/> */}
         <Routes>
-          <Route path="/" element={<Main />} />
-          <Route path="/login" element={<Login />} />
+          <Route path="/login" element={<Main />} />
+          <Route path="" element={<Login />} />
           <Route path="/register" element={<Register />} />
           <Route path="/details" element={<PrivateRouter />}>
             <Route path="" element={<MovieDetails />} />
