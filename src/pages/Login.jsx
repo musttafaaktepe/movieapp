@@ -91,9 +91,10 @@ const Login = () => {
     const reg = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (email.match(reg)) {
       setEmailError(false);
-      toastWarning("please check your email");
+      
     } else {
       setEmailError(true);
+      toastWarning("please check your email");
     }
 
     if (String(password).length < 6) {
@@ -224,7 +225,7 @@ const Login = () => {
               >
                  <GoogleIcon color="currentColor" />
 
-                 
+
                 Continue with Google
                
               </Button>
