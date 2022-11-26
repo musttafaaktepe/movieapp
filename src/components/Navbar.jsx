@@ -67,7 +67,7 @@ const Navbar = () => {
             )}
             {loginInformation && (
               <div>
-                <h5 style={{ display: "inline" }}>{user?.user?.email}</h5>
+                <h5 style={{ display: "inline" }}>{user?.user?.email || user }</h5>
                 <Button
                   sx={{ fontSize: "medium" }}
                   color="inherit"
