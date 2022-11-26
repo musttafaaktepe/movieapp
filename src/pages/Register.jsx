@@ -14,13 +14,14 @@ import IconButton from "@mui/material/IconButton";
 import Visibility from "@mui/icons-material/Visibility";
 import VisibilityOff from "@mui/icons-material/VisibilityOff";
 import { useState } from "react";
-import { createUserWithEmailAndPassword } from "firebase/auth";
+import { checkActionCode, createUserWithEmailAndPassword } from "firebase/auth";
 import { auth } from "../auth/firebase";
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
 import { REGISTER } from "../redux/types/reduxTypes";
-import falseicon from "../assets/incorrect-icon.png"
-
+import falseicon from "../assets/incorrect-icon.png";
+import { toastSuccessNotify } from "../helpers/TostyNotify";
+import { toastWarning } from "../helpers/TostyNotify";
 
 const Register = () => {
   const dispatch = useDispatch();
@@ -70,13 +71,18 @@ const Register = () => {
     if (email.match(reg)) {
       setEmailError(false);
       setRegisterUnsuccess(false)
+      
     } else {
       setEmailError(true);
+      setRegisterUnsuccess(true)
+      toastWarning("check your email")
+
     }
 
     if(String(password).length<6){
       setPasswordError(true)
       setRegisterUnsuccess(true)
+      toastWarning("check your password")
     }else{
       setPasswordError(true)
     }
@@ -95,8 +101,13 @@ const Register = () => {
           password: password,
         });
         setRegisterSuccess(true);
+        setRegisterUnsuccess(false);
+        toastSuccessNotify("everything is fine")
+        toastSuccessNotify("Can you  login now, please")
         console.log(user);
-      } catch (error) {}
+      } catch (error) {
+        toastWarning("Please go to login page because you are already a member")
+      }
     }
   };
 

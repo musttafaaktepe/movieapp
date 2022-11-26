@@ -21,8 +21,7 @@ import {
   sendPasswordResetEmail,
 } from "firebase/auth";
 import { useNavigate } from "react-router-dom";
-// import { toast } from "react-toastify";
-// import { toastSuccess } from "../helpers/ToastNotify";
+import { toastSuccessNotify, toastWarning } from "../helpers/TostyNotify";
 
 const Login = () => {
   const navigate = useNavigate();
@@ -89,12 +88,14 @@ const Login = () => {
     const reg = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (email.match(reg)) {
       setEmailError(false);
+      toastWarning("please check your email")
     } else {
       setEmailError(true);
     }
 
     if (String(password).length < 6) {
       setPasswordError(true);
+      toastWarning("please check your password")
     } else {
       setPasswordError(false);
     }
@@ -110,7 +111,7 @@ const Login = () => {
           login: true,
         });
         navigate("/");
-        // toastSuccess()
+        toastSuccessNotify("login")
       } catch (error) {
         console.log(error.message);
       }
@@ -195,8 +196,7 @@ const Login = () => {
                     cursor: "pointer",
                     color: "blue",
                   }}
-
-                  onClick={()=>forgotPassword(email)}
+                  onClick={() => forgotPassword(email)}
                 >
                   Forgot Password?
                 </p>
