@@ -22,7 +22,7 @@ function App() {
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
           <Route path="/details" element={<PrivateRouter />}>
-            <Route path="" element={<MovieDetail />} />
+            <Route path="" element={<MovieDetails />} />
           </Route>
         </Routes>
       </Provider>
