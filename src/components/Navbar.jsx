@@ -27,6 +27,7 @@ const Navbar = () => {
       await signOut(auth);
       dispatch({ type: LOGOUT });
       navigate("/")
+      localStorage.removeItem("userName")
       toastSuccessNotify("logout")
     } catch (error) {
       console.log(error.message);
