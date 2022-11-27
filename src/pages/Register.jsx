@@ -102,9 +102,8 @@ const Register = () => {
         setRegisterUnsuccess(false);
         toastSuccessNotify("everything is fine");
         toastSuccessNotify("Can you  login now, please");
-        console.log(user);
       } catch (error) {
-        toastWarning("Please go to login page");
+        toastWarning("Registratin failed");
       }
     }
   };
