@@ -29,7 +29,7 @@ const Main = () => {
 
   useEffect(() => {
     searchMovie ? searchMovies() : getMovies();
-  }, [pageNumber]);
+  }, [pageNumber, searchMovie]);
 
   return (
     <div>
