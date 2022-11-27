@@ -36,7 +36,7 @@ const Register = () => {
   });
 
   const [emailError, setEmailError] = useState(false);
-  const [passwordError , setPasswordError] = useState(false);
+  const [passwordError, setPasswordError] = useState(false);
   const [registerSuccess, setRegisterSuccess] = useState(false);
   const [registerUnsuccess, setRegisterUnsuccess] = useState(false);
 
@@ -70,21 +70,19 @@ const Register = () => {
     const reg = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (email.match(reg)) {
       setEmailError(false);
-      setRegisterUnsuccess(false)
-      
+      setRegisterUnsuccess(false);
     } else {
       setEmailError(true);
-      setRegisterUnsuccess(true)
-      toastWarning("check your email")
-
+      setRegisterUnsuccess(true);
+      toastWarning("check your email");
     }
 
-    if(String(password).length<6){
-      setPasswordError(true)
-      setRegisterUnsuccess(true)
-      toastWarning("check your password")
-    }else{
-      setPasswordError(true)
+    if (String(password).length < 6) {
+      setPasswordError(true);
+      setRegisterUnsuccess(true);
+      toastWarning("check your password");
+    } else {
+      setPasswordError(true);
     }
 
     if (!emailError) {
@@ -102,11 +100,11 @@ const Register = () => {
         });
         setRegisterSuccess(true);
         setRegisterUnsuccess(false);
-        toastSuccessNotify("everything is fine")
-        toastSuccessNotify("Can you  login now, please")
+        toastSuccessNotify("everything is fine");
+        toastSuccessNotify("Can you  login now, please");
         console.log(user);
       } catch (error) {
-        toastWarning("Please go to login page because you are already a member")
+        toastWarning("Please go to login page");
       }
     }
   };
@@ -197,9 +195,13 @@ const Register = () => {
                 alt="successfully-registered"
               />
             )}
-            {registerUnsuccess && <img  style={{ width: "3rem" }}
+            {registerUnsuccess && (
+              <img
+                style={{ width: "3rem" }}
                 src={falseicon}
-                alt="successfully-registered"  /> }
+                alt="successfully-registered"
+              />
+            )}
           </div>
         </RegisterStyledForm>
       </div>
