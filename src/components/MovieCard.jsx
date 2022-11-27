@@ -3,7 +3,7 @@ import { MovieCardOverview } from "./MovieCard.styled";
 import "./moviecard.css";
 import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
-
+import errorimg from "../assets/errorimg.jpg";
 const MovieCard = ({ dataMovies: { data } }) => {
   const navigate = useNavigate();
   const loginInformation = useSelector((state) => state.loginInformation);
@@ -39,7 +39,9 @@ const MovieCard = ({ dataMovies: { data } }) => {
                 style={{ height: "90%" }}
                 className="movie-img"
                 variant="top"
-                src={`https://image.tmdb.org/t/p/w1280${poster_path}`}
+                src={ poster_path ? 
+                  `https://image.tmdb.org/t/p/w1280${poster_path}` : errorimg
+                }
               />
               <Card.Body>
                 <Card.Text>{original_title}</Card.Text>

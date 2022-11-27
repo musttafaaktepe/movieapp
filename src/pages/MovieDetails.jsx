@@ -3,6 +3,7 @@ import { useLocation } from "react-router-dom";
 import { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import errorimg from "../assets/errorimg.jpg"
 
 const MovieDetails = () => {
   const navigate = useNavigate();
@@ -25,7 +26,7 @@ const MovieDetails = () => {
   const getMovieVideos = async () => {
     try {
       const videos = await axios(videoUrl);
-      setVideoKey(videos.data.results[0].key);
+      setVideoKey(videos.data?.results[0]?.key);
     } catch (error) {
       console.log(error.message);
     }
@@ -50,8 +51,12 @@ const MovieDetails = () => {
       </div>
       <div className="d-flex">
         <img
+        alt="img"
           style={{ width: "20rem", display: "inline-block" }}
-          src={`https://image.tmdb.org/t/p/w1280${poster_path}`}
+          src={
+            poster_path ? 
+            `https://image.tmdb.org/t/p/w1280${poster_path}` : errorimg
+          }
         />
 
         <div className="d-flex flex-column border border-primary justify-content-between ">
