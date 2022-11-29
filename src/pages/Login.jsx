@@ -91,7 +91,6 @@ const Login = () => {
     const reg = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (email.match(reg)) {
       setEmailError(false);
-      
     } else {
       setEmailError(true);
       toastWarning("please check your email");
@@ -117,6 +116,7 @@ const Login = () => {
         navigate("/");
         toastSuccessNotify("login");
       } catch (error) {
+        toastWarning("user not found");
         console.log(error.message);
       }
     }
@@ -223,11 +223,8 @@ const Login = () => {
                 onClick={signInWithGoogle}
                 variant="contained"
               >
-                 <GoogleIcon color="currentColor" />
-
-
+                <GoogleIcon color="currentColor" />
                 Continue with Google
-               
               </Button>
             </FormControl>
           </div>

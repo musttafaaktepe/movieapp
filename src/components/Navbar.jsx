@@ -12,7 +12,6 @@ import { LOGOUT } from "../redux/types/reduxTypes";
 import { signOut } from "firebase/auth";
 import { toastSuccessNotify } from "../helpers/TostyNotify";
 
-
 const Navbar = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -20,21 +19,17 @@ const Navbar = () => {
   const user = useSelector((state) => state.user);
   // console.log(loginInformation);
 
-  
-  
   const handleLogout = async () => {
     try {
       await signOut(auth);
       dispatch({ type: LOGOUT });
-      navigate("/")
-      localStorage.removeItem("userName")
-      toastSuccessNotify("logout")
+      navigate("/");
+      localStorage.removeItem("userName");
+      toastSuccessNotify("logout");
     } catch (error) {
       console.log(error.message);
     }
   };
-
-
 
   return (
     <div>
@@ -71,7 +66,9 @@ const Navbar = () => {
             )}
             {loginInformation && (
               <div>
-                <h5 style={{ display: "inline" }}>{user?.user?.email || user }</h5>
+                <h5 style={{ display: "inline" }}>
+                  {user?.user?.email || user}
+                </h5>
                 <Button
                   sx={{ fontSize: "medium" }}
                   color="inherit"
